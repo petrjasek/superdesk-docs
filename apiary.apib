@@ -10,35 +10,35 @@ Returns a specific user by id.
 + Parameters
         + id (required, number, `1`)
 
-+ Response 200
++ Response 200 (application/json)
 
     ```js
     {
-        _link_self: '/user/1',
-        _create_time: '',
-        _update_time: '',
-        _is_active: true,
+        _href: '/user/1',
+        _create_time: '2013-09-23T12:20:21Z',
+        _update_time: '2013-09-23T12:20:21Z',
         _permissions: {
             read: true,
             update: true
         },
+        is_active: true,
         first_name: 'karel',
         last_name: 'badlik',
         user_name: 'kbadlik',
         email: 'kbadlik@gmail.com',
-        info: {skype: 'karel.badlik', phone: '+420 777 77 77'}
+        info: {skype: 'karel.badlik', phone: '+4207777777'}
     }
     ```
 
 ## PUT /user/{id}
-Updates a specific user.
+(DRAFT) Updates a specific user.
 
 + Request
 
 + Response
 
 ## DELETE /user/{id}
-Deletes a specific user.
+(DRAFT) Deletes a specific user.
 
 + Request
 
@@ -52,19 +52,19 @@ Returns a list of users.
         + per_page `10` (optional, number, `10`)
         + page `1` (optional, number, `10`)
 
-+ Response 200
++ Response 200 (application/json)
 
     ```js
     {
-        _link: {
-            self: '/user',
-            previous: null,
-            next: '/user?page=2',
-        },
+        _links: [
+            {rel: 'self', href: '/user?page=1'},
+            {rel: 'previous', href: null},
+            {rel: 'next', href: '/user?page=2'}
+        ],
         _list: {
-            item_total: 45,
-            item_per_page: 10
-            current_page: 1,
+            count: 45,
+            per_page: 10
+            page: 1,
         }
         _permissions: {
             read: true,
@@ -72,10 +72,10 @@ Returns a list of users.
         },
         data: [
             {
-                _link_self: '/user/1',
-                _create_time: '',
-                _update_time: '',
-                _is_active: true,
+                _href: '/user/1',
+                _create_date: '',
+                _update_date: '',
+                is_active: true,
                 first_name: 'karel',
                 last_name: 'badlik',
                 user_name: 'kbadlik',
@@ -87,9 +87,31 @@ Returns a list of users.
     ```
 
 ## POST /user
-Creates a new user.
+(DRAFT) Creates a new user.
 
 + Request
 
 + Response
 
+
+# Group items
+
+## GET /items{/guid}
+
++ Response 200 (application/json)
+
+    ```js
+    {
+        "guid": "urn:example.com:xyz",
+        "version": 2,
+        "provider": "example.com",
+        "urgency": 4,
+        "firstCreated": "2013-09-23T12:20:21Z",
+        "versionCreated": "2013-09-23T12:30:05Z",
+        "slugline" :"ITEM-SLUG",
+        "headline": "News Item",
+        "description": "News item info",
+        "creditline": "EXAMPLE Images",
+        "itemClass": "icls:text"
+    }
+    ```
