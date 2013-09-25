@@ -1,27 +1,95 @@
 FORMAT: X-1A
 
-# Superdesk News Items API
+# Superdesk API
 
-NewsML G2 like resource representing news items.
+# Group users
 
-# Item [/items{/guid}]
+## GET /user/{id}
+Returns a specific user by id.
 
-NewsItem resource indentified by its *guid*.
++ Parameters
+        + id (required, number, `1`)
 
-## Get Item [GET]
++ Response 200
 
-+ Response 200 (application/json)
+    ```js
+    {
+        _link_self: '/user/1',
+        _create_time: '...',
+        _update_time: '...',
+        _is_active: true,
+        _permissions: {
+            read: true,
+            update: true
+        },
+        first_name: 'ozan',
+        last_name: 'ozbek',
+        user_name: 'eozan',
+        email: 'ozan.ozbek@sourcefabric.org',
+        info: {skype: '...', phone: '...'}
+    }
+    ```
 
-        {
-            "guid": "urn:example.com:xyz",
-            "version": 2,
-            "provider": "example.com",
-            "urgency": 4,
-            "firstCreated": "2013-09-23T12:20:21Z",
-            "versionCreated": "2013-09-23T12:30:05Z",
-            "slugline" :"ITEM-SLUG",
-            "headline": "News Item",
-            "description": "News item info",
-            "creditline": "EXAMPLE Images",
-            "itemClass": "icls:text"
+## PUT /user/{id}
+Updates a specific user.
+
++ Request
+
++ Response
+
+## DELETE /user/{id}
+Deletes a specific user.
+
++ Request
+
++ Response
+
+
+## GET /user
+Returns a list of users.
+
++ Parameters
+        + per_page `10` (optional, number, `10`)
+        + page `1` (optional, number, `10`)
+
++ Response 200
+
+    ```js
+    {
+        _link: {
+            self: '/user',
+            previous: null,
+            next: '/user?page=2',
+        },
+        _list: {
+            item_total: 45,
+            item_per_page: 10
+            current_page: 1,
         }
+        _permissions: {
+            read: true,
+            create: true
+        },
+        data: [
+            {
+                _link_self: '/user/1',
+                _create_time: '...',
+                _update_time: '...',
+                _is_active: true,
+                first_name: 'ozan',
+                last_name: 'ozbek',
+                user_name: 'eozan',
+                email: 'ozan.ozbek@sourcefabric.org'
+            },
+            ...
+        ]
+    }
+    ```
+
+## POST /user
+Creates a new user.
+
++ Request
+
++ Response
+
