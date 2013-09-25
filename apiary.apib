@@ -1,0 +1,27 @@
+FORMAT: X-1A
+
+# Superdesk News Items API
+
+NewsML G2 like resource representing news items.
+
+# Item [/items{/guid}]
+
+NewsItem resource indentified by its *guid*.
+
+## Get Item [GET]
+
++ Response 200 (application/json)
+
+        {
+            "guid": "urn:example.com:xyz",
+            "version": 2,
+            "provider": "example.com",
+            "urgency": 4,
+            "firstCreated": "2013-09-23T12:20:21Z",
+            "versionCreated": "2013-09-23T12:30:05Z",
+            "slugline" :"ITEM-SLUG",
+            "headline": "News Item",
+            "description": "News item info",
+            "creditline": "EXAMPLE Images",
+            "itemClass": "icls:text"
+        }
