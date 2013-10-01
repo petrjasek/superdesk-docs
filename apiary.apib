@@ -4,29 +4,33 @@ FORMAT: X-1A
 
 # Group users
 
-## GET /users/{id}
+## GET /users{/_id}
 Returns a specific user by id.
 
 + Parameters
-        + id (required, number, `1`)
+        + _id (required, string, `ab1`)
 
 + Response 200 (application/json)
 
     ```js
     {
-        _href: '/user/1',
-        _create_date: '2013-09-23T12:20:21Z',
-        _update_date: '2013-09-23T12:20:21Z',
+        _id: "ab1", 
+        _links: {
+            self: {"href": "/user/1"}
+        },
+        _created: "2013-09-23T12:20:21Z",
+        _updated: "2013-09-23T12:20:21Z",
         _permissions: {
             read: true,
             update: true
         },
         is_active: true,
-        first_name: 'karel',
-        last_name: 'badlik',
-        user_name: 'kbadlik',
-        email: 'kbadlik@gmail.com',
-        info: {skype: 'karel.badlik', phone: '+4207777777'}
+        first_name: "karel",
+        last_name: "badlik",
+        display_name: "karel balik",
+        username: "kbadlik",
+        email: "kbadlik@gmail.com",
+        user_info: {skype: "karel.badlik", phone: "+4207777777"}
     }
     ```
 
@@ -41,30 +45,27 @@ Returns a list of users.
 
     ```js
     {
-        _links: [
-            {rel: 'self', href: '/user?page=1'},
-            {rel: 'previous', href: null},
-            {rel: 'next', href: '/user?page=2'}
-        ],
-        _list: {
-            count: 45,
-            per_page: 10
-            page: 1,
-        }
+        _links: {
+            "self": {"href": "/users"},
+            "next": {"href": "/users?page=2"}
+        },
         _permissions: {
             read: true,
             create: true
         },
-        data: [
+        _items: [
             {
-                _href: '/user/1',
-                _create_date: '',
-                _update_date: '',
+                _links: {
+                    "self": {"href": "/users/ab1"}
+                },
+                _created: "2012-12-12T10:34:15+0000",
+                _updated: "2012-12-12T10:34:15+0000",
                 is_active: true,
                 first_name: 'karel',
                 last_name: 'badlik',
-                user_name: 'kbadlik',
-                email: 'kbadlik@gmail.com'
+                display_name: "karel badlik",
+                username: "kbadlik",
+                email: "kbadlik@gmail.com"
             },
             ...
         ]
